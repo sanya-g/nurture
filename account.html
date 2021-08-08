@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+    </style>
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Menu -->
+    <nav>
+      <div>
+        <a href="index.html">
+          <img class="logo" src="simple.png" />
+        </a>
+      </div>         
+      ​
+      <ul class="nav-menu">
+        
+       
+        <li><button onclick='logout()' class="signupButton">Log out</button></li>
+      </ul>
+    </nav>
+    ​
+    <!-- Main Content -->
+    ​
+    <div class="journal-content-wrapper">
+      
+      <div class="journal-prompt">
+        
+          <h1 class="tag-line">
+          	Hi {{name}}!
+    	  </h1><br><br><br>
+          <form action="/~/SegoLily/account/JournalEntry" method="POST" enctype="multipart/form-data">
+		  <p class="intro-paragraph">It's time to write your positive affirmation for the day! Here are some prompts that can help you get started: <br><br>
+		  * What area in your life do you want to improve? <br>
+		  * What is something you want to let go of? <br>
+		  * What are you good at? <br>
+		  * What makes you feel empowered? <br>
+		  * What are your intentions for the day? <br><br>
+		  Also, for every 2 entries you create, you're plant will start to grow! <br><br>
+		  After clicking the submit button, be sure to click the 'Watch your mindfulness grow' button below as well to see your progress!. 
+		  </p>
+		  <!-- Add input fields to store data -->
+		  <textarea rows="5" cols="33" name="log" placeholder="Write your affirmation" required></textarea>
+		  <!-- Submit button to send form data-->
+		  <input type="submit" value="Submit">
+		</form>
+		<input type="button" onclick="plantGrow()" value="Watch Your Mindfulnesss Grow">
+		
+       
+        </div>
+        <div class="displayentry">
+        
+        <div class="entries-container">
+        <h1 class="tag-line">
+          	Your Current Journal Entries
+    	  </h1>
+        <ul>
+			{{#account.JournalEntry}}
+			<!--
+				Replace `log` with `name` of the data.
+				If used HTML, it should match the name attribute:
+				<input type="text" name="log">
+			-->
+		<li class="intro-paragraph">{{log}}</li>
+		{{/account.JournalEntry}}
+		</ul>
+		</div>
+		
+		</div>
+      
+      <div class="journal-image">
+        <img class="hero" id="journalimg" src="grow1.png" />
+      </div>
+    </div>
+    <!-- Footer Content -->
+    <div>
+      <footer class="sticky-footer">Created for Sego Lily Hacks 2021</footer>
+    </div>
+    <script>
+			var entrytracker = localStorage.getItem('entrycounter');
+			var growth = document.getElementById("journalimg");
+			var growthstatus = 1;
+			
+			if (entrytracker === null) {
+    			entrytracker = 0;
+			}
+			function plantGrow(){
+				entrytracker++;
+				localStorage.setItem("entrycounter", entrytracker);
+				console.log(entrytracker);
+				
+				if (entrytracker == 1){
+					growth.src = "grow2.png";
+				}
+				
+				if (entrytracker == 2){
+					growth.src = "grow3.png";
+				}
+				
+				if (entrytracker == 3){
+					growth.src = "grow4.png";
+				}
+				
+				if (entrytracker == 4){
+					growth.src = "grow5.png";
+				}
+				
+				if (entrytracker == 5){
+					growth.src = "growth6.png";
+				}
+				
+				if (entrytracker == 6){
+					growth.src = "grow1.png";
+					entrytracker = 0;
+					localStorage.setItem("entrycounter", entrytracker);
+				}
+				
+				/*if (entrytracker % 2 == 0){
+					//plant grows for every 2 entries
+					if (growthstatus == 1){
+						growthstatus = 2;
+						growth.src = "grow2.png";
+					}
+					
+					if (growthstatus == 2){
+						growthstatus = 3;
+						growth.src = "grow3.png";
+					}
+					
+					if (growthstatus == 3){
+						growthstatus = 4;
+						growth.src = "grow4.png";
+					}
+					
+					if (growthstatus == 4){
+						growthstatus = 5;
+						growth.src = "grow5.png";
+					}
+					
+					if (growthstatus == 5){
+						growthstatus = 6;
+						growth.src = "growth6.png";
+					}
+					
+					if (growthstatus == 6){
+						growthstatus = 1;
+						growth.src = "grow1.png";
+						entrytracker = 0;
+						localStorage.setItem("entrycount", entrytracker);
+						
+					}
+				}*/
+			}
+			
+	</script>
+  </body>
+</html>
