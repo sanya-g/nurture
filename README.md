@@ -1,11 +1,1 @@
-Enter Project Name
-==================
-## What this project does
-
-## Why this project is useful
-
-## How we built this 
-
-## Accomplishments that we are proud of 
-
-## What is next for this project
+See https://devpost.com/software/nurture-ex9vhy for details
